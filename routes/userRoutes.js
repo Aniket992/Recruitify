@@ -11,4 +11,43 @@ const router = express.Router()
 // UPDATE USER||PUT
 router.put('/update-user',userAuth,updateUserController)
 
+// GET ALL USERS || GET
+router.get('/get-users', userAuth, getAllUsersController);
+
+
+// // GET USER PROFILE || GET
+// router.get('/user-profile', userAuth, getUserProfileController);
+
+
+// // CHANGE PASSWORD || PUT
+// router.put('/change-password', userAuth, changePasswordController);
+
+
+// // UPLOAD PROFILE PICTURE || POST
+// router.post('/upload-profile-picture', userAuth, uploadProfilePictureController);
+
+
+// // GET USER NOTIFICATIONS || GET
+// router.get('/user-notifications', userAuth, getUserNotificationsController);
+
+
+// // SUBSCRIBE TO NEWSLETTER || POST
+// router.post('/subscribe-newsletter', userAuth, subscribeNewsletterController);
+
+
+// // UNSUBSCRIBE FROM NEWSLETTER || DELETE
+// router.delete('/unsubscribe-newsletter', userAuth, unsubscribeNewsletterController);
+
+
+// // GET USER PREFERENCES || GET
+// router.get('/user-preferences', userAuth, getUserPreferencesController);
+
+
+// // UPDATE USER PREFERENCES || PUT
+// router.put('/update-user-preferences', userAuth, updateUserPreferencesController);
+
+
+// // DELETE USER ACCOUNT || DELETE
+// router.delete('/delete-user', userAuth, deleteUserAccountController);
+
 export default router
