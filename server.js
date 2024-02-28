@@ -49,7 +49,7 @@ app.use(errroMiddelware);
 
 
 //port
-const PORT = process.env.PORT||8080 
+const PORT = process.env.PORT||8080
 // listen
 app.listen(PORT,()=>{
     console.log(`Node Server is running in ${process.env.DEV_MODE} on port no ${PORT}`.bgCyan.white);

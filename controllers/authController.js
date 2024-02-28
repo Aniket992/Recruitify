@@ -29,6 +29,7 @@ export const registerController = async (req, res, next) => {
       location: user.location,
     },
     token,
+    
   });
 };
 

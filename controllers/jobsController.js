@@ -21,3 +21,38 @@ export const getAllJobsController = async (req, res, next) => {
       
     });
   };
+
+  // ======= UPDATE JOBS ===========
+  export const updateJobController = async(req,res,next) => {
+   const {id} = req.params
+   const {company,position} = req.body
+
+//    validation
+if(!company||!position){
+    next('Please provide All Fields')
+}
+//   find job
+const job = await jobsModel.findOne({_id:id})
+
+
+// validation
+if(!job){
+    next(`no jobs found with this id ${id}`)
+}
+//  if(!req.user.userId === job.createdBy.toString()){
+//     next("you are not Authorized to update this job")
+//     return ;
+
+//  } 
+ const updateJob = await jobsModel.findOne({_id:id},req.body,{
+    new:true,
+    runValidators:true
+ });
+ job.company = company
+job.position = position
+await job.save()
+ res.status(200).json({updateJob});
+  };
+    //logic filters
+
+    //sorting
