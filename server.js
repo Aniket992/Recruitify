@@ -1,5 +1,6 @@
 //packages imports
 import express from "express";
+import 'express-async-errors';
 import dotenv from "dotenv";
 import colors from "colors";
 import cors from "cors";
@@ -17,7 +18,7 @@ import connectDB from "./config/db.js";
 //routes import
 import testRoutes from './routes/testRoutes.js';
 import authRoutes from './routes/authRoutes.js';
-import errroMiddelware from "./middlewares/errorMiddleware.js";
+import errorMiddelware from "./middlewares/errorMiddleware.js";
 import userRoutes from './routes/userRoutes.js'
 import jobRoutes from './routes/jobRoutes.js'
 // import bodyParser from "body-parser";
@@ -45,7 +46,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/job",jobRoutes);
 //validation middelware
-app.use(errroMiddelware);
+app.use(errorMiddelware);
 
 
 //port

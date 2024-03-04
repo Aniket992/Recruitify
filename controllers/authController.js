@@ -15,6 +15,7 @@ export const registerController = async (req, res, next) => {
   const exisitingUser = await userModel.findOne({ email });
   if (exisitingUser) {
     next("Email Already Register Please Login");
+    // return res.status(400).json({ error: "Email is already registered. Please login." });
   }
   const user = await userModel.create({ name, email, password });
   //token
@@ -29,7 +30,6 @@ export const registerController = async (req, res, next) => {
       location: user.location,
     },
     token,
-    
   });
 };
 

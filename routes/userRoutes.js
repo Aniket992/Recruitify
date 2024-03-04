@@ -12,7 +12,7 @@ const router = express.Router()
 router.put('/update-user',userAuth,updateUserController)
 
 // GET ALL USERS || GET
-router.get('/get-users', userAuth, getAllUsersController);
+// router.get('/get-users', userAuth, getAllUsersController);
 
 
 // // GET USER PROFILE || GET
