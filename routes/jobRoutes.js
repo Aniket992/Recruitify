@@ -1,6 +1,6 @@
 import express from 'express'
 import userAuth from '../middlewares/authMiddleware.js'
-import { createJobController, deleteJobController, getAllJobsController,jobStatsController,updateJobController } from '../controllers/jobsController.js'
+import { createJobController, deleteJobController, getAllJobsController,jobStatsController,rateJobController,updateJobController } from '../controllers/jobsController.js'
 
 const router = express.Router()
 
@@ -19,6 +19,15 @@ router.delete("/delete-job/:id", userAuth, deleteJobController);
 
 // // JOBS STATS FILTER || GET
 router.get("/job-stats", userAuth, jobStatsController);
+
+// Rate a Job
+// // RATE A JOB || POST
+router.post('/rate-job/:id', userAuth, rateJobController);
+
+// Bookmark a Job
+// // BOOKMARK A JOB || POST
+// router.post('/bookmark-job/:id', userAuth, bookmarkJobController);
+
 
 // / GET ALL JOB CATEGORIES || GET
 // router.get('/job-categories', userAuth, getAllJobCategoriesController);
@@ -66,18 +75,9 @@ router.get("/job-stats", userAuth, jobStatsController);
   
 // // GET JOB DETAILS || GET
 // router.get('/job-details/:id', userAuth, getJobDetailsController);
-// Rate a Job
 
- 
-  
-// // RATE A JOB || POST
-// router.post('/rate-job/:id', userAuth, rateJobController);
-// Bookmark a Job
 
- 
-  
-// // BOOKMARK A JOB || POST
-// router.post('/bookmark-job/:id', userAuth, bookmarkJobController);
+
 
 export default router
 

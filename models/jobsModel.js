@@ -30,6 +30,10 @@ const jobSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
+    rating: {
+      type: Number,
+      default: "null",
+    },
   },
   { timestamps: true }
 );

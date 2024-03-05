@@ -53,17 +53,15 @@ export const getAllJobsController = async (req, res, next) => {
   queryResult = queryResult.skip(skip).limit(limit);
   const currentPageJob = await jobsModel.countDocuments(queryResult);
 
-  const jobsOutOfTotaljobs = (`${currentPageJob}-${totalJobs}`);
+  const jobsOutOfTotaljobs = `${currentPageJob}-${totalJobs}`;
   //jobs count
-  const numOfPages = Math.ceil(totalJobs / limit) ;
+  const numOfPages = Math.ceil(totalJobs / limit);
   const jobs = await queryResult;
+  const pagesOutOfTotalpages = `${page}-${numOfPages}`;
 
   // const jobs = await jobsModel.find({ createdBy: req.user.userId });
   res.status(200).json({
-    // totalJobs,
-    page,
-    numOfPages,
-
+    pagesOutOfTotalpages,
     jobsOutOfTotaljobs,
     jobs,
   });
@@ -117,6 +115,36 @@ export const deleteJobController = async (req, res, next) => {
   await job.deleteOne();
   res.status(200).json({ message: "job deleted successfully" });
 };
+
+//rate a job//////////
+
+export const rateJobController = async (req, res, next) => {
+  try {
+      const { id } = req.params;
+      const { rating } = req.body;
+
+      // Check if the job with the provided ID exists
+      const job = await jobsModel.findOne({ _id: id });
+
+      if (!job) {
+          return next(`No job found with this id: ${id}`);
+      }
+
+      if (rating === undefined || rating === null) {
+          return next("Please provide a valid rating");
+      }
+
+      // Update the job with the new rating
+      job.rating = rating;
+      await job.save();
+
+      return res.status(200).json({ message: 'Job rated successfully', job });
+  } catch (error) {
+      // Handle any unexpected errors
+      return next(error);
+  }
+};
+
 
 // JOB STATS & FILTERS
 export const jobStatsController = async (req, res, next) => {
