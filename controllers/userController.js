@@ -18,3 +18,27 @@ export const updateUserController = async (req,res,next) =>{
     });
 };
 
+export const addExperienceController = async(req,res,next) =>{
+    const {company,position,year} = req.body
+    if(!company||!position||!year){
+        next('Please Provide All Fields')
+    }
+    const user = await userModel.findOne({_id:req.user.userId})
+
+    user.experience.push({
+        company,
+        position,
+        year,
+      })
+
+    await user.save()
+    const token  = user.createJWT();
+    res.status(200).json({
+        user,
+        token,
+    });
+}
+
+export const removeExperienceController = async(req,res,next) =>{
+    
+}

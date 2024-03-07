@@ -28,22 +28,34 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "India",
     },
-    //   education: [{
-//     degree: { type: String },
-//     institution: { type: String },
-//     year: { type: Number },
-//   }],
-//   experience: [{
-//     position: { type: String },
-//     company: { type: String },
-//     year: { type: Number },
-//   }],
-//   links: {
-//     portfolio: { type: String }, // Link to the user's portfolio
-//     linkedinProfile: { type: String }, // Link to the user's LinkedIn profile
-//   },
-//   appliedForms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'JobApplication' }], // Reference to applied job forms
-//   // Add other fields as needed
+    education: [
+      {
+        higher: [{ percentage: { type: String } },
+           { year: { type: Number } }
+          ],
+        higherSecondary: [
+          { percentage: { type: String } },
+          { year: { type: Number } },
+        ],
+        graduation: [
+          { percentage: { type: String } },
+          { year: { type: Number } },
+        ],
+      },
+    ],
+    experience: [
+      {
+        position: { type: String },
+        company: { type: String },
+        year: { type: Number },
+      },
+    ],
+      links: {
+        portfolio: { type: String }, // Link to the user's portfolio
+        linkedinProfile: { type: String }, // Link to the user's LinkedIn profile
+      },
+    //   appliedForms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'JobApplication' }], // Reference to applied job forms
+    //   // Add other fields as needed
   },
   { timestamps: true }
 );

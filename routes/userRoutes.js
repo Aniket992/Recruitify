@@ -1,6 +1,6 @@
 import express from 'express';
 import userAuth from '../middlewares/authMiddleware.js';
-import { updateUserController } from '../controllers/userController.js';
+import { addExperienceController, updateUserController } from '../controllers/userController.js';
 
 // router object
 const router = express.Router()
@@ -11,6 +11,11 @@ const router = express.Router()
 // UPDATE USER||PUT
 router.put('/update-user',userAuth,updateUserController)
 
+//ADD EXPERIENCE||PATCH
+router.patch('/add-experience',userAuth,addExperienceController)
+
+//REMOVE EXPERIENCE||DELETE
+router.delete('/delete-experience',userAuth,)
 // GET ALL USERS || GET
 // router.get('/get-users', userAuth, getAllUsersController);
 
